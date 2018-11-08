@@ -1,0 +1,16 @@
+# Optional -- tweak this based on your deployment target  https://docs.docker.com/compose/compose-file/
+version: '3.7'
+
+
+# Services to run
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+    - 80:80
+    deploy:
+      replicas: {{repl ConfigOption "nginx_replicas" }}
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: '{{repl ConfigOption "nginx_memory_limit" }}'
